@@ -1,5 +1,7 @@
 package com.spring.security.samples.basic.auth.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,7 +22,13 @@ public class UsuarioLocalService {
     }
 
     public Usuario obterUsuarioPeloId(long id) {
-        return usuarioPersistence.findById(id).get();
+        Optional<Usuario> usuario = usuarioPersistence.findById(id);
+
+        if (!usuario.isPresent()) {
+            return null;
+        }
+
+        return usuario.get();
     }
 
     public Usuario atualizarUsuario(long id, Usuario usuario) {
