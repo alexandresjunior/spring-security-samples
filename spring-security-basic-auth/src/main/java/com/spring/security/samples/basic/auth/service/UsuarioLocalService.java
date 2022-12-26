@@ -31,6 +31,16 @@ public class UsuarioLocalService {
         return usuario.get();
     }
 
+    public Usuario obterUsuarioPeloEmail(String email) {
+        Optional<Usuario> usuario = usuarioPersistence.findByEmail(email);
+
+        if (!usuario.isPresent()) {
+            return null;
+        }
+
+        return usuario.get();
+    }
+
     public Usuario atualizarUsuario(long id, Usuario usuario) {
         Usuario usuarioBD = usuarioPersistence.findById(id).get();
 

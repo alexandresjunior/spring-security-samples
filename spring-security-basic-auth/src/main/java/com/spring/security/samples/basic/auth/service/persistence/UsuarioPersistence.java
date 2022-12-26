@@ -1,5 +1,7 @@
 package com.spring.security.samples.basic.auth.service.persistence;
 
+import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,5 +13,7 @@ import com.spring.security.samples.basic.auth.model.Usuario;
 public interface UsuarioPersistence extends JpaRepository<Usuario, Long> {
 
     Page<Usuario> findAll(Pageable pageable);
+
+    Optional<Usuario> findByEmail(String email);
 
 }
